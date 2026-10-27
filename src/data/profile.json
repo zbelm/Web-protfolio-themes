@@ -1,0 +1,27 @@
+{
+  "_comment": "Your identity and links. Any value wrapped in [BRACKETS] is a placeholder: the site hides it automatically until you replace it with the real value.",
+  "brand": "zachary.dev",
+  "name": "Zachary Belmonte",
+  "firstName": "Zachary",
+  "handle": "zbelm",
+  "roles": ["Web Developer", "App Developer", "Game Developer", "IT Student"],
+  "pitch": "I build fast, friendly websites, apps and Roblox games, and I'm looking for an internship where I can ship real work with a team.",
+  "status": "Open to internships (OJT)",
+  "_extraStatuses": "More status pills shown next to the main status (remove or empty the list to hide).",
+  "extraStatuses": ["Open for commissions"],
+  "openToWork": true,
+  "location": "[CITY, COUNTRY]",
+  "school": "[SCHOOL]",
+  "course": "[COURSE]",
+  "_photo": "Leave empty to auto-use public/images/me.(webp|avif|jpg|jpeg|png), or set a path like /images/portrait.webp.",
+  "photo": "",
+  "photoAlt": "Portrait of Zachary Belmonte",
+  "links": {
+    "github": "https://github.com/zbelm",
+    "linkedin": "[LINKEDIN_URL]",
+    "email": "[EMAIL]"
+  },
+  "resume": "/resume.pdf",
+  "_achievementGoal": "Target for the 'n / goal achievements' counter shown in the Minecraft and Roblox themes.",
+  "achievementGoal": 10
+}

@@ -1,0 +1,52 @@
+{
+  "_comment": "Experience & education, newest first. type is one of: education | training | competition | project. end: \"\" means ongoing (shows 'Present'). An entry whose title is still [BRACKETED] is hidden; other [BRACKETED] fields are just left out. Entries with \"_sample\": true show in `npm run dev` only.",
+  "items": [
+    {
+      "type": "education",
+      "title": "[COURSE]",
+      "org": "[SCHOOL]",
+      "start": "[YEAR]",
+      "end": "",
+      "description": "Coursework in programming, databases, networking and systems analysis.",
+      "skills": []
+    },
+    {
+      "type": "project",
+      "title": "Roblox game development",
+      "org": "Personal project",
+      "start": "2024",
+      "end": "",
+      "description": "Designing, scripting and publishing my own Roblox experience: gameplay systems in Luau, saving player data, UI and level building.",
+      "skills": ["Luau", "Roblox Studio", "Game design"]
+    },
+    {
+      "type": "project",
+      "title": "Portfolio with a theme engine",
+      "org": "Personal project",
+      "start": "2026",
+      "end": "2026",
+      "description": "Built zachary.dev with React, Vite, GSAP and Three.js: three themes that each change layout, order and motion from one set of content files.",
+      "skills": ["React", "GSAP", "Three.js"]
+    },
+    {
+      "_sample": true,
+      "type": "competition",
+      "title": "Campus Hackathon (sample)",
+      "org": "Sample organizer",
+      "start": "2025",
+      "end": "2025",
+      "description": "Sample entry used to preview the layout.",
+      "skills": ["Teamwork"]
+    },
+    {
+      "_sample": true,
+      "type": "training",
+      "title": "Web Development Bootcamp (sample)",
+      "org": "Sample provider",
+      "start": "2025",
+      "end": "2025",
+      "description": "Sample entry used to preview the layout.",
+      "skills": ["HTML", "CSS", "JavaScript"]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="professional" data-mode="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>%SITE_TITLE%</title>
+    <meta name="description" content="%SITE_DESCRIPTION%" />
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta name="theme-color" content="%SITE_THEME_COLOR%" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="%SITE_TITLE%" />
+    <meta property="og:description" content="%SITE_DESCRIPTION%" />
+    <meta property="og:image" content="%SITE_OG_IMAGE%" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Apply saved theme + mode before first paint so nothing flashes. -->
+    <script>
+      (function () {
+        var d = document.documentElement, themes = ['professional', 'minecraft', 'roblox'];
+        function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+        var q = new URLSearchParams(location.search).get('theme');
+        var t = themes.indexOf(q) > -1 ? q : get('zd:theme');
+        var m = get('zd:mode');
+        if (m !== 'light' && m !== 'dark') m = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.dataset.theme = themes.indexOf(t) > -1 ? t : 'professional';
+        d.dataset.mode = m;
+        if (get('zd:effects') === 'off') d.dataset.effects = 'off';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding:2rem;font:18px/1.6 system-ui">Zachary Belmonte — Web, App &amp; Game Developer. Please enable JavaScript to view this portfolio, or visit <a href="https://github.com/zbelm">github.com/zbelm</a>.</p>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

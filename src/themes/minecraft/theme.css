@@ -1,0 +1,1286 @@
+/* Minecraft theme: the game's UI conventions with original, procedurally generated
+   pixel textures (--tx-* custom properties set by extras.jsx). Scoped to .app--minecraft. */
+
+.app--minecraft {
+  --px: 'Pixelify Sans Variable', 'Courier New', monospace;
+  --gui: #c6c6c6;
+  --gui-text: #3f3f3f;
+  --gui-bevel: inset 3px 3px 0 #fff, inset -3px -3px 0 #555;
+  --mc-shadow: 2px 2px 0 #3f3f3f;
+}
+.app--minecraft img,
+.app--minecraft .thumb,
+.app--minecraft .mc-pano-fallback {
+  image-rendering: pixelated;
+}
+.app--minecraft h1,
+.app--minecraft h2,
+.app--minecraft h3,
+.app--minecraft .eyebrow,
+.app--minecraft .nav__logo,
+.app--minecraft .footer__signoff {
+  font-family: var(--px);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.app--minecraft .eyebrow {
+  font-size: 1rem;
+  text-transform: none;
+}
+.app--minecraft .section-title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  text-shadow: 3px 3px 0 color-mix(in srgb, var(--text) 20%, transparent);
+}
+[data-theme='minecraft'] .lead {
+  color: var(--text);
+}
+
+/* ---------- Sky ---------- */
+.mc-sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+  pointer-events: none;
+}
+.mc-sky__tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 30%, rgb(255 140 60 / 0.35));
+  opacity: 0;
+  animation: mc-dusk 90s linear infinite;
+}
+[data-mode='dark'] .mc-sky__tint {
+  background: linear-gradient(rgb(60 40 120 / 0.4), transparent 70%);
+}
+@keyframes mc-dusk {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  80% {
+    opacity: 0;
+  }
+}
+.mc-sky__orbit {
+  position: absolute;
+  left: 50%;
+  top: 105%;
+  transform: rotate(-48deg); /* resting position when effects are off */
+  animation: mc-orbit 90s linear infinite;
+}
+@keyframes mc-orbit {
+  from {
+    transform: rotate(-70deg);
+  }
+  to {
+    transform: rotate(70deg);
+  }
+}
+.mc-sky__body {
+  position: absolute;
+  left: -40px;
+  top: calc(-1 * min(90vh, 900px));
+  width: 80px;
+  height: 80px;
+  background: #fff7a8;
+  box-shadow:
+    inset -10px -10px 0 #ffe066,
+    inset 10px 10px 0 #fffbe0;
+}
+[data-mode='dark'] .mc-sky__body {
+  width: 64px;
+  height: 64px;
+  background: #e9ecf5;
+  box-shadow:
+    inset 16px 16px 0 -8px #c9cfdf,
+    inset -18px 10px 0 -10px #c3c9da,
+    inset 0 -14px 0 -8px #d3d8e6;
+}
+.mc-sky__stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+[data-mode='dark'] .mc-sky__stars {
+  opacity: 1;
+}
+.mc-sky__stars::before,
+.mc-sky__stars::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    5vw 8vh #fff, 14vw 22vh #fff, 22vw 6vh #dfe6ff, 31vw 15vh #fff, 38vw 30vh #fff, 46vw 9vh #dfe6ff,
+    55vw 24vh #fff, 63vw 4vh #fff, 71vw 18vh #dfe6ff, 79vw 33vh #fff, 87vw 11vh #fff, 94vw 27vh #fff,
+    9vw 41vh #dfe6ff, 26vw 47vh #fff, 50vw 44vh #fff, 68vw 52vh #dfe6ff, 84vw 46vh #fff, 3vw 60vh #fff;
+  animation: mc-twinkle 4s steps(2) infinite;
+}
+.mc-sky__stars::after {
+  transform: translate(2.5vw, 3vh);
+  animation-delay: -2s;
+}
+@keyframes mc-twinkle {
+  50% {
+    opacity: 0.35;
+  }
+}
+.mc-sky__clouds span {
+  position: absolute;
+  left: 0;
+  width: 192px;
+  height: 32px;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow:
+    32px -16px 0 rgb(255 255 255 / 0.92),
+    96px -16px 0 rgb(255 255 255 / 0.92);
+  animation: mc-cloud 160s linear infinite;
+}
+.mc-sky__clouds span:nth-child(1) {
+  top: 12vh;
+  animation-delay: -30s;
+}
+.mc-sky__clouds span:nth-child(2) {
+  top: 30vh;
+  width: 256px;
+  animation-duration: 210s;
+  animation-delay: -120s;
+}
+.mc-sky__clouds span:nth-child(3) {
+  top: 56vh;
+  width: 128px;
+  animation-duration: 180s;
+  animation-delay: -70s;
+}
+[data-mode='dark'] .mc-sky__clouds span {
+  background: rgb(150 160 200 / 0.12);
+  box-shadow:
+    32px -16px 0 rgb(150 160 200 / 0.12),
+    96px -16px 0 rgb(150 160 200 / 0.12);
+}
+@keyframes mc-cloud {
+  from {
+    transform: translateX(-300px);
+  }
+  to {
+    transform: translateX(calc(100vw + 40px));
+  }
+}
+
+/* ---------- Buttons: stone texture, black outline, bevel ---------- */
+.app--minecraft .btn,
+[data-theme='minecraft'] .modal .btn {
+  min-height: 48px;
+  padding: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 0;
+  background:
+    linear-gradient(rgb(0 0 0 / 0.34), rgb(0 0 0 / 0.34)),
+    var(--tx-stone, none) 0 0 / 32px 32px,
+    #6f6f6f;
+  image-rendering: pixelated;
+  box-shadow:
+    inset 2px 2px 0 rgb(255 255 255 / 0.32),
+    inset -2px -3px 0 rgb(0 0 0 / 0.4);
+  color: #fff;
+  text-shadow: var(--mc-shadow);
+  font-family: var(--px);
+  font-weight: 500;
+  font-size: 1.125rem;
+  transition: none;
+}
+.app--minecraft .btn:hover,
+[data-theme='minecraft'] .modal .btn:hover {
+  border-color: #fff;
+  background:
+    linear-gradient(rgb(40 60 140 / 0.42), rgb(40 60 140 / 0.42)),
+    var(--tx-stone, none) 0 0 / 32px 32px,
+    #6f6f6f;
+}
+.app--minecraft .btn:active {
+  transform: translateY(1px);
+}
+.app--minecraft .btn[disabled] {
+  background: #2c2c2c;
+  color: #a0a0a0;
+  text-shadow: none;
+  box-shadow: none;
+  border-color: #000;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.app--minecraft .btn .icon {
+  filter: drop-shadow(2px 2px 0 #3f3f3f);
+}
+.app--minecraft .icon-btn,
+.app--minecraft .nav-pill {
+  border-radius: 0;
+  border: 2px solid #000;
+  background: rgb(0 0 0 / 0.45);
+  color: #fff;
+}
+.app--minecraft .icon-btn:hover,
+.app--minecraft .nav-pill:hover {
+  border-color: #fff;
+  background: rgb(0 0 0 / 0.6);
+}
+
+/* ---------- GUI window ---------- */
+.mc-window,
+[data-theme='minecraft'] .modal,
+.app--minecraft .menu__panel {
+  background: var(--gui);
+  color: var(--gui-text);
+  border: 3px solid #000;
+  border-radius: 0;
+  box-shadow: var(--gui-bevel), 0 8px 0 rgb(0 0 0 / 0.25);
+}
+.mc-window {
+  position: relative;
+  padding: clamp(18px, 3vw, 28px);
+}
+.mc-window__title {
+  margin-bottom: 14px;
+  font-family: var(--px);
+  font-size: 1.25rem;
+  color: #404040;
+}
+[data-theme='minecraft'] .modal {
+  --surface: #c6c6c6;
+  --text: #3f3f3f;
+  --text-muted: #4a4a4a;
+  --accent-text: #24501a;
+  --border: #8b8b8b;
+  --bg-2: #b3b3b3;
+}
+[data-theme='minecraft'] .modal .chip,
+.app--minecraft .chip {
+  border-radius: 0;
+  border: 2px solid #3f3f3f;
+  background: #6f6f6f;
+  color: #fff;
+  text-shadow: 1px 1px 0 #3f3f3f;
+  font-family: var(--px);
+}
+[data-theme='minecraft'] .modal h2 {
+  font-family: var(--px);
+  font-weight: 500;
+}
+[data-theme='minecraft'] .modal .badge-img--mono,
+.app--minecraft .badge-img--mono {
+  border-radius: 0;
+  background: var(--issuer, #a2824e);
+  color: var(--issuer-fg, #fff);
+  font-family: var(--px);
+  box-shadow:
+    inset 3px 3px 0 rgb(255 255 255 / 0.3),
+    inset -3px -3px 0 rgb(0 0 0 / 0.3);
+}
+[data-theme='minecraft'] .modal__close {
+  border-radius: 0;
+  border: 2px solid #000;
+  background: #8b8b8b;
+  color: #fff;
+}
+.app--minecraft .menu__panel {
+  padding: 8px;
+}
+.app--minecraft .menu__item,
+.app--minecraft .switch-row {
+  border-radius: 0;
+  color: var(--gui-text);
+}
+.app--minecraft .menu__item:hover,
+.app--minecraft .switch-row:hover {
+  background: rgb(255 255 255 / 0.5);
+}
+.app--minecraft .menu__text small,
+.app--minecraft .switch-row small {
+  color: #4a4a4a;
+}
+.app--minecraft .switch,
+.app--minecraft .switch__thumb,
+.app--minecraft .swatch {
+  border-radius: 0;
+}
+
+/* Generated covers use block textures */
+.app--minecraft .thumb--generated,
+[data-theme='minecraft'] .modal .thumb--generated {
+  background: var(--tx-grass_side, #79553a) 0 0 / 48px 48px;
+}
+.app--minecraft .thumb--web,
+[data-theme='minecraft'] .modal .thumb--web {
+  background: var(--tx-planks, #a2824e) 0 0 / 48px 48px;
+}
+.app--minecraft .thumb--app,
+[data-theme='minecraft'] .modal .thumb--app {
+  background: var(--tx-cobble, #7d7d7d) 0 0 / 48px 48px;
+}
+.app--minecraft .thumb__pattern,
+[data-theme='minecraft'] .modal .thumb__pattern {
+  display: none;
+}
+.app--minecraft .thumb__mark,
+[data-theme='minecraft'] .modal .thumb__mark {
+  color: #fff;
+  font-family: var(--px);
+  font-weight: 500;
+  text-shadow: 4px 4px 0 #3f3f3f;
+}
+.app--minecraft .thumb__cat,
+[data-theme='minecraft'] .modal .thumb__cat {
+  border-radius: 0;
+  background: rgb(0 0 0 / 0.7);
+  color: #fff;
+  font-family: var(--px);
+}
+
+/* ---------- Top bar ---------- */
+.app--minecraft .nav[data-scrolled] {
+  background: rgb(0 0 0 / 0.55);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 0;
+}
+.app--minecraft .nav__logo {
+  color: #fff;
+  text-shadow: var(--mc-shadow);
+  font-size: 1.375rem;
+}
+.app--minecraft .nav__logo span {
+  color: #ffff55;
+}
+
+/* ---------- Hotbar (bottom of screen, desktop) ---------- */
+@media (min-width: 961px) {
+  .app--minecraft .nav__links {
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    z-index: 55;
+    margin: 0;
+    transform: translateX(-50%);
+  }
+  .app--minecraft .nav__links ul {
+    position: relative;
+    gap: 0;
+    padding: 3px;
+    background: rgb(0 0 0 / 0.5);
+    border: 3px solid #1a1a1a;
+  }
+  .app--minecraft .nav__links li {
+    position: static;
+  }
+  .app--minecraft .nav__links a {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 0;
+    border: 3px solid #555;
+    background: rgb(139 139 139 / 0.5);
+    color: #fff;
+  }
+  .app--minecraft .nav__links a:hover {
+    background: rgb(200 200 200 / 0.55);
+    color: #fff;
+  }
+  .app--minecraft .nav__links a[aria-current] {
+    outline: 4px solid #fff;
+    outline-offset: -1px;
+    z-index: 1;
+    background: rgb(160 160 160 / 0.6);
+  }
+  .app--minecraft .nav__icon {
+    display: block;
+    grid-area: 1 / 1;
+    width: 26px;
+    height: 26px;
+    filter: drop-shadow(2px 2px 0 #3f3f3f);
+  }
+  .app--minecraft .nav__slot {
+    display: block;
+    grid-area: 1 / 1;
+    align-self: end;
+    justify-self: end;
+    margin: 0 4px 1px 0;
+    font-family: var(--px);
+    font-size: 0.8125rem;
+    line-height: 1;
+    text-shadow: 1px 1px 0 #3f3f3f;
+  }
+  .app--minecraft .nav__label {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 58px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--px);
+    font-size: 1.125rem;
+    color: #fff;
+    text-shadow: var(--mc-shadow);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .app--minecraft .nav__links a[aria-current] .nav__label,
+  .app--minecraft .nav__links a:hover .nav__label,
+  .app--minecraft .nav__links a:focus-visible .nav__label {
+    opacity: 1;
+  }
+  .app--minecraft .nav__links ul:hover a[aria-current]:not(:hover) .nav__label {
+    opacity: 0;
+  }
+  .app--minecraft .footer {
+    padding-bottom: 140px;
+  }
+  .mc-hud {
+    position: fixed;
+    left: 50%;
+    bottom: 84px;
+    z-index: 55;
+    width: 318px;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+}
+.mc-hud__hearts {
+  display: flex;
+  gap: 1px;
+  margin-bottom: 6px;
+}
+.mc-hud__hearts i {
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cpath d='M1 1h3v1H1zM5 1h3v1H5zM0 2h9v3H0zM1 5h7v1H1zM2 6h5v1H2zM3 7h3v1H3zM4 8h1v1H4z' fill='%23000'/%3E%3Cpath d='M1 2h2v1H1zM6 2h2v1H6zM1 3h7v2H1zM2 5h5v1H2zM3 6h3v1H3zM4 7h1v1H4z' fill='%23e3281c'/%3E%3Cpath d='M2 2h1v1H2zM1 3h1v1H1z' fill='%23ffb3ad'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+.mc-hud__xp {
+  position: relative;
+  height: 10px;
+  background: #1a1a1a;
+  border: 2px solid #000;
+}
+.mc-hud__fill {
+  position: absolute;
+  inset: 0;
+  background: #80ff20;
+  transform-origin: left;
+  transition: transform 500ms steps(6);
+}
+.mc-hud__lv {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  font-family: var(--px);
+  font-size: 1.125rem;
+  color: #80ff20;
+  text-shadow:
+    2px 0 0 #000,
+    -2px 0 0 #000,
+    0 2px 0 #000,
+    0 -2px 0 #000;
+}
+@media (max-width: 960px) {
+  .mc-hud {
+    display: none;
+  }
+}
+.mc-orb {
+  position: fixed;
+  z-index: 70;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  background: #c4ff6a;
+  box-shadow:
+    0 0 0 2px #4f9e1c,
+    0 0 12px #b6ff6a;
+  pointer-events: none;
+}
+.mc-debris {
+  position: fixed;
+  z-index: 70;
+  width: 7px;
+  height: 7px;
+  pointer-events: none;
+}
+.mc-toast {
+  position: fixed;
+  right: 12px;
+  z-index: 75;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 300px;
+  padding: 10px 14px;
+  background: #212121;
+  border: 3px solid #555;
+  box-shadow: inset 0 0 0 2px #000;
+  font-family: 'Pixelify Sans Variable', monospace;
+  pointer-events: none;
+}
+.mc-toast b {
+  display: block;
+  font-weight: 500;
+  color: #ffff55;
+}
+.mc-toast span span {
+  color: #fff;
+}
+.mc-toast__icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  background: var(--tx-grass_side, #5d9b3a) 0 0 / 100% 100%;
+  image-rendering: pixelated;
+  border: 2px solid #000;
+}
+
+/* ---------- Hero: title screen ---------- */
+.mc-title {
+  position: relative;
+  overflow: hidden;
+  margin-top: calc(var(--nav-h) * -1);
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: calc(var(--nav-h) + 24px) 0 120px;
+  text-align: center;
+  color: #fff;
+}
+.mc-title__panorama {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}
+.mc-pano-fallback {
+  position: absolute;
+  inset: 0;
+}
+.mc-pano-fallback::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background:
+    var(--tx-grass_side, #5d9b3a) 0 0 / 64px 64px repeat-x,
+    var(--tx-dirt, #79553a) 0 64px / 64px 64px repeat;
+}
+.mc-title__shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+  pointer-events: none;
+}
+.mc-title__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 18px;
+}
+.mc-logo {
+  display: grid;
+  font-size: clamp(2.75rem, 9vw, 7rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: transparent;
+  background: var(--tx-stone, none) 0 0 / 0.4em 0.4em, #8a8a8a;
+  -webkit-background-clip: text;
+  background-clip: text;
+  image-rendering: pixelated;
+  filter: drop-shadow(3px 0 0 #000) drop-shadow(-3px 0 0 #000) drop-shadow(0 3px 0 #000) drop-shadow(0 -3px 0 #000)
+    drop-shadow(0 6px 0 #2b2b2b) drop-shadow(0 8px 10px rgb(0 0 0 / 0.5));
+}
+.mc-splash {
+  position: relative;
+  margin-top: -42px;
+  margin-left: min(52vw, 520px);
+  height: 0;
+  pointer-events: none;
+}
+.mc-splash span {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: var(--px);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #ffff00;
+  text-shadow:
+    3px 3px 0 #3f3f00,
+    -1px -1px 0 #3f3f00,
+    1px -1px 0 #3f3f00,
+    -1px 1px 0 #3f3f00;
+  transform: rotate(-18deg);
+  animation: mc-splash 0.5s ease-in-out infinite alternate;
+}
+@keyframes mc-splash {
+  to {
+    transform: rotate(-18deg) scale(1.08);
+  }
+}
+.mc-title__roles {
+  margin-top: 18px;
+  padding: 4px 14px;
+  background: rgb(0 0 0 / 0.5);
+  font-family: var(--px);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  text-shadow: var(--mc-shadow);
+}
+.mc-title__roles .roles__item {
+  color: #fff;
+}
+.mc-title__pitch {
+  max-width: 54ch;
+  padding: 10px 16px;
+  background: rgb(0 0 0 / 0.55);
+  font-size: 1.0625rem;
+}
+.mc-menu {
+  display: grid;
+  gap: 10px;
+  width: min(100%, 420px);
+  margin-top: 8px;
+}
+.mc-menu__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.mc-menu__row:has(> :only-child) {
+  grid-template-columns: 1fr;
+}
+.mc-title__corner {
+  position: absolute;
+  bottom: 12px;
+  font-family: var(--px);
+  font-size: 1rem;
+  color: #fff;
+  text-shadow: var(--mc-shadow);
+}
+.mc-title__corner--l {
+  left: 16px;
+}
+.mc-title__corner--r {
+  right: 16px;
+}
+:root:not([data-effects='off']) .mc-in {
+  animation: mc-drop 450ms var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes mc-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+}
+
+/* ---------- About: player screen ---------- */
+.mc-about__grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: clamp(20px, 4vw, 40px);
+  align-items: start;
+}
+.mc-about__preview {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+.mc-viewbox {
+  display: grid;
+  place-items: end center;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #000;
+  border: 2px solid #373737;
+  box-shadow: inset 2px 2px 0 #373737, inset -2px -2px 0 #fff;
+  overflow: hidden;
+}
+.mc-viewbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mc-about__name {
+  font-family: var(--px);
+  font-size: 1.25rem;
+  color: #404040;
+}
+.mc-about__text {
+  display: grid;
+  gap: 16px;
+  font-size: 1.0625rem;
+}
+.mc-stats {
+  display: grid;
+  border-top: 2px solid #8b8b8b;
+}
+.mc-stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 2px solid #8b8b8b;
+}
+.mc-stats dt {
+  font-family: var(--px);
+}
+.mc-stats dd {
+  font-weight: 600;
+  text-align: right;
+}
+.mc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+}
+.mc-tags li {
+  padding: 4px 10px;
+  background: #6f6f6f;
+  border: 2px solid #3f3f3f;
+  color: #fff;
+  font-family: var(--px);
+  text-shadow: 1px 1px 0 #3f3f3f;
+}
+/* Original blocky figure */
+.mc-player {
+  position: relative;
+  width: 96px;
+  height: 192px;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: 24px 48px 24px;
+  grid-template-rows: 48px 72px 72px;
+}
+.mc-player span {
+  display: block;
+}
+.mc-player__head {
+  grid-column: 2;
+  position: relative;
+  background: #c68e65;
+  box-shadow: inset 0 12px 0 #4a2f1d;
+}
+.mc-player__head .eye {
+  position: absolute;
+  top: 24px;
+  width: 8px;
+  height: 6px;
+  background: #fff;
+  box-shadow: inset -4px 0 0 #3a5ba8;
+}
+.mc-player__head .eye.l {
+  left: 8px;
+}
+.mc-player__head .eye.r {
+  right: 8px;
+}
+.mc-player__head .mouth {
+  position: absolute;
+  left: 16px;
+  bottom: 6px;
+  width: 16px;
+  height: 4px;
+  background: #7a4a33;
+}
+.mc-player__body {
+  grid-column: 2;
+  grid-row: 2;
+  background: #2f4f6e;
+  box-shadow: inset 0 -8px 0 #253f58;
+}
+.mc-player__arm {
+  grid-row: 2;
+  background: linear-gradient(#2f4f6e 0 28px, #c68e65 28px);
+}
+.mc-player__arm.l {
+  grid-column: 1;
+}
+.mc-player__arm.r {
+  grid-column: 3;
+}
+.mc-player__leg {
+  grid-row: 3;
+  background: linear-gradient(#3b3b48 0 58px, #555 58px);
+}
+.mc-player__leg.l {
+  grid-column: 2;
+  width: 24px;
+}
+.mc-player__leg.r {
+  grid-column: 2;
+  width: 24px;
+  justify-self: end;
+}
+
+/* ---------- Projects: Select World ---------- */
+.mc-select {
+  padding: clamp(16px, 3vw, 28px);
+  background:
+    linear-gradient(rgb(0 0 0 / 0.6), rgb(0 0 0 / 0.6)),
+    var(--tx-dirt, #5d4027) 0 0 / 64px 64px;
+  image-rendering: pixelated;
+  border: 3px solid #000;
+  color: #fff;
+}
+.mc-filters {
+  margin-bottom: 16px;
+}
+.app--minecraft .filter {
+  border-radius: 0;
+  border: 2px solid #000;
+  background: #3a3a3a;
+  color: #fff;
+  font-family: var(--px);
+  font-size: 1.0625rem;
+  text-shadow: var(--mc-shadow);
+}
+.app--minecraft .filter:hover {
+  border-color: #fff;
+  color: #fff;
+}
+.app--minecraft .filter[aria-pressed='true'] {
+  background: #6f6f6f;
+  border-color: #fff;
+  color: #fff;
+}
+.mc-worlds {
+  display: grid;
+  gap: 4px;
+  list-style: none;
+  padding: 6px;
+  background: rgb(0 0 0 / 0.45);
+  border-block: 2px solid #000;
+}
+.mc-world {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 6px;
+  border: 2px solid transparent;
+  text-align: left;
+  color: #fff;
+}
+.mc-world:hover {
+  background: rgb(255 255 255 / 0.07);
+}
+.mc-world[aria-pressed='true'] {
+  border-color: #fff;
+  background: #000;
+}
+.mc-world__icon {
+  flex: none;
+  width: 72px;
+  height: 72px;
+}
+.mc-world__icon .thumb {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+}
+.mc-world__icon .thumb__mark,
+.mc-world__icon .thumb__cat {
+  display: none;
+}
+.mc-world__text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.mc-world__name {
+  font-family: var(--px);
+  font-size: 1.25rem;
+  text-shadow: var(--mc-shadow);
+}
+.mc-world__star {
+  color: #ffff55;
+}
+.mc-world__line {
+  color: #b5b5b5;
+  font-size: 0.9375rem;
+}
+.mc-world__empty {
+  padding: 24px;
+  text-align: center;
+  color: #b5b5b5;
+}
+.mc-select__actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ---------- Skills: XP bars ---------- */
+.mc-skills__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.mc-xplist {
+  display: grid;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+}
+.mc-xp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 1.3fr);
+  align-items: end;
+  gap: 16px;
+}
+.mc-xp__name {
+  font-weight: 600;
+}
+.mc-xp__bar {
+  position: relative;
+  height: 12px;
+  background: #1a1a1a;
+  border: 2px solid #000;
+}
+.mc-xp__fill {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(20% - 2px), #1a1a1a calc(20% - 2px) 20%),
+    #80ff20;
+  transform: scaleX(var(--p));
+  transform-origin: left;
+}
+.mc-xp__lv {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-family: var(--px);
+  font-size: 1.125rem;
+  color: #80ff20;
+  text-shadow:
+    2px 0 0 #000,
+    -2px 0 0 #000,
+    0 2px 0 #000,
+    0 -2px 0 #000;
+}
+
+/* ---------- Certifications: inventory ---------- */
+.mc-inventory__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: -6px 0 14px;
+  font-family: var(--px);
+}
+.mc-slots {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0;
+  list-style: none;
+  padding: 0;
+}
+.mc-slot {
+  position: relative;
+  aspect-ratio: 1;
+  margin: 2px;
+  background: #8b8b8b;
+  box-shadow:
+    inset 3px 3px 0 #373737,
+    inset -3px -3px 0 #fff;
+}
+.mc-slot__btn {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.mc-slot__btn:hover {
+  background: rgb(255 255 255 / 0.45);
+}
+.mc-slot__btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -3px;
+}
+.mc-slot .badge-img {
+  width: 66%;
+  height: 66%;
+  border-radius: 0;
+  font-size: clamp(0.75rem, 1.6vw, 1.125rem);
+}
+.mc-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  z-index: 5;
+  display: none;
+  gap: 2px;
+  width: max-content;
+  max-width: min(260px, 70vw);
+  padding: 8px 10px;
+  background: rgb(16 0 16 / 0.96);
+  border: 2px solid #2d0a6b;
+  box-shadow: inset 0 0 0 2px #5000ff55;
+  font-family: var(--px);
+  font-size: 1rem;
+  line-height: 1.35;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.mc-tip strong {
+  font-weight: 500;
+  color: #fff;
+}
+.mc-tip span {
+  color: #b5b5b5;
+}
+.mc-tip .mc-tip__date {
+  color: #55ff55;
+}
+.mc-tip .mc-tip__hint {
+  color: #8f8fff;
+}
+.mc-slot:hover .mc-tip,
+.mc-slot:focus-within .mc-tip {
+  display: grid;
+}
+.mc-slot:nth-child(9n + 1) .mc-tip {
+  left: 0;
+  transform: none;
+}
+.mc-slot:nth-child(9n) .mc-tip {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+.mc-certs__foot {
+  margin-top: 24px;
+}
+
+/* ---------- Experience: advancements ---------- */
+.mc-adv__tree {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  list-style: none;
+  padding: clamp(16px, 3vw, 28px);
+  background:
+    linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.55)),
+    var(--tx-stone, #5a5a5a) 0 0 / 64px 64px;
+  image-rendering: pixelated;
+  border: 2px solid #373737;
+}
+.mc-adv__tree::before {
+  content: '';
+  position: absolute;
+  left: calc(clamp(16px, 3vw, 28px) + 29px);
+  top: 40px;
+  bottom: 40px;
+  width: 4px;
+  background: #fff;
+  box-shadow: 0 0 0 2px #000;
+}
+.mc-adv__node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.mc-frame {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  background: #c6c6c6;
+  color: #2b2b2b;
+  border: 3px solid #000;
+  box-shadow:
+    inset 3px 3px 0 #fff,
+    inset -3px -3px 0 #555;
+}
+.mc-frame--goal {
+  border-radius: 18px;
+  background: #e6c86e;
+}
+.mc-frame--challenge {
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  background: #c49be8;
+}
+.mc-adv__card {
+  border: 2px solid #000;
+}
+.mc-adv__title {
+  padding: 8px 12px;
+  background: #1e6aa8;
+  color: #fff;
+  font-size: 1.25rem;
+  text-shadow: var(--mc-shadow);
+}
+.mc-adv__body {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  background: #212121;
+  color: #e0e0e0;
+}
+.mc-adv__meta {
+  color: #b5b5b5;
+  font-size: 0.9375rem;
+}
+.mc-adv__reward {
+  color: #7cfc6a;
+  font-family: var(--px);
+}
+
+/* ---------- Contact: chat ---------- */
+.mc-contact__inner {
+  max-width: 820px;
+}
+.mc-chat {
+  --danger: #ff5555;
+  --success: #55ff55;
+  --text: #fff;
+  --text-muted: #c8c8c8;
+  display: grid;
+  gap: 22px;
+  padding: clamp(16px, 3vw, 28px);
+  background: rgb(0 0 0 / 0.68);
+  color: #fff;
+}
+.mc-chat__log {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  font-family: var(--px);
+  font-size: 1.125rem;
+  text-shadow: var(--mc-shadow);
+}
+.mc-chat__link {
+  margin-right: 8px;
+  color: #55ffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mc-chat__link:hover {
+  color: #fff;
+}
+.mc-chat__system {
+  color: #ffff55;
+}
+.mc-chat .field label {
+  font-family: var(--px);
+  font-weight: 500;
+  color: #fff;
+}
+.mc-chat .field input,
+.mc-chat .field textarea {
+  border-radius: 0;
+  border: 2px solid #a0a0a0;
+  background: #000;
+  color: #fff;
+  font-family: var(--px);
+  font-size: 1.0625rem;
+}
+.mc-chat .field input:focus-visible,
+.mc-chat .field textarea:focus-visible {
+  border-color: #fff;
+  box-shadow: none;
+}
+.mc-chat .form-success {
+  border-radius: 0;
+  background: #000;
+  border: 2px solid #a0a0a0;
+  color: #fff;
+}
+.mc-chat .form-success__icon {
+  border-radius: 0;
+}
+
+/* ---------- Footer: ground ---------- */
+.app--minecraft .footer {
+  border-top: 0;
+  background:
+    linear-gradient(rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.25)),
+    var(--tx-grass_side, #5d9b3a) 0 0 / 64px 64px repeat-x,
+    var(--tx-dirt, #79553a) 0 64px / 64px 64px;
+  image-rendering: pixelated;
+  padding-top: 88px;
+  color: #fff;
+  text-shadow: var(--mc-shadow);
+}
+.app--minecraft .footer__copy {
+  color: #fff;
+}
+.app--minecraft .footer .icon-btn {
+  color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .mc-about__grid {
+    grid-template-columns: 1fr;
+  }
+  .mc-about__preview {
+    max-width: 220px;
+    justify-self: center;
+  }
+  .mc-skills__grid {
+    grid-template-columns: 1fr;
+  }
+  .mc-splash {
+    margin: -30px 0 0 40vw;
+  }
+}
+@media (max-width: 640px) {
+  .mc-select__actions {
+    grid-template-columns: 1fr;
+  }
+  .mc-slots {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .mc-slot:nth-child(n) .mc-tip {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  .mc-slot:nth-child(6n + 1) .mc-tip {
+    left: 0;
+    transform: none;
+  }
+  .mc-slot:nth-child(6n) .mc-tip {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+  .mc-world__icon {
+    width: 56px;
+    height: 56px;
+  }
+  .mc-xp {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .mc-splash {
+    margin: -10px 0 0 22vw;
+  }
+  .mc-splash span {
+    font-size: 0.9375rem;
+  }
+  .mc-title__corner {
+    font-size: 0.875rem;
+  }
+}

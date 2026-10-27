@@ -1,0 +1,43 @@
+{
+  "_comment": "Skills grouped for display. level is 1-5 and should be honest: 1 Beginner, 2 Familiar, 3 Comfortable, 4 Proficient, 5 Advanced. Group names are free text; keep 3-5 groups. This starter list is a guess: adjust it to match you.",
+  "levels": ["Beginner", "Familiar", "Comfortable", "Proficient", "Advanced"],
+  "groups": [
+    {
+      "name": "Languages",
+      "items": [
+        { "name": "HTML & CSS", "level": 4 },
+        { "name": "JavaScript", "level": 3 },
+        { "name": "Luau", "level": 4 },
+        { "name": "Python", "level": 2 },
+        { "name": "SQL", "level": 2 }
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "items": [
+        { "name": "React", "level": 3 },
+        { "name": "Vite", "level": 3 },
+        { "name": "GSAP", "level": 2 },
+        { "name": "Three.js", "level": 2 }
+      ]
+    },
+    {
+      "name": "Tools",
+      "items": [
+        { "name": "Git & GitHub", "level": 3 },
+        { "name": "VS Code", "level": 4 },
+        { "name": "Figma", "level": 2 },
+        { "name": "Vercel", "level": 3 }
+      ]
+    },
+    {
+      "name": "Game Dev",
+      "items": [
+        { "name": "Roblox Studio", "level": 4 },
+        { "name": "Game design", "level": 3 },
+        { "name": "Level design", "level": 3 },
+        { "name": "Blender", "level": 2 }
+      ]
+    }
+  ]
+}

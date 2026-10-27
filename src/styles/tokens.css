@@ -1,0 +1,176 @@
+/* Color + shape tokens for every theme and mode. Kept in the main bundle (tiny) so
+   the first paint, loaders and the switch overlay are always the right colors.
+   Component styles for Minecraft/Roblox live in their own lazy chunks.
+   All text pairs below were checked for WCAG AA (4.5:1 body, 3:1 large/UI). */
+
+:root {
+  --font-body: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --container: 1200px;
+  --gutter: clamp(16px, 5vw, 40px);
+  --section-y: clamp(96px, 13vw, 168px);
+  --nav-h: 68px;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-btn: 12px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: linear(0, 0.36 9%, 0.79 20%, 1.04 32%, 1.1 40%, 1.06 50%, 0.99 62%, 1);
+  --dur-fast: 160ms;
+  --dur: 260ms;
+}
+
+/* ---------- Professional ---------- */
+:root[data-theme='professional'] {
+  --bg: #fbfbfd;
+  --bg-2: #f3f3f8;
+  --surface: #ffffff;
+  --surface-glass: rgb(255 255 255 / 0.72);
+  --text: #14141f;
+  --text-muted: #565667;
+  --border: rgb(20 20 50 / 0.09);
+  --border-strong: rgb(20 20 50 / 0.16);
+  --accent: #5b5bd6;
+  --accent-strong: #4646c0;
+  --accent-soft: rgb(91 91 214 / 0.1);
+  --accent-text: #4b4bc8;
+  --on-accent: #ffffff;
+  --focus: #5b5bd6;
+  --success: #1c7c4a;
+  --danger: #c0352b;
+  --shadow-sm: 0 1px 2px rgb(16 16 40 / 0.05);
+  --shadow: 0 1px 2px rgb(16 16 40 / 0.04), 0 8px 24px -8px rgb(16 16 40 / 0.1);
+  --shadow-lg: 0 2px 4px rgb(16 16 40 / 0.04), 0 24px 48px -16px rgb(16 16 40 / 0.18);
+}
+:root[data-theme='professional'][data-mode='dark'] {
+  --bg: #0b0b12;
+  --bg-2: #111119;
+  --surface: #14141e;
+  --surface-glass: rgb(22 22 34 / 0.66);
+  --text: #ececf3;
+  --text-muted: #a3a3b8;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.15);
+  --accent: #8b8bff;
+  --accent-strong: #a3a3ff;
+  --accent-soft: rgb(139 139 255 / 0.12);
+  --accent-text: #a5a5ff;
+  --on-accent: #0b0b12;
+  --focus: #a5a5ff;
+  --success: #5fd197;
+  --danger: #ff8a80;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -10px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 2px 4px rgb(0 0 0 / 0.3), 0 30px 60px -20px rgb(0 0 0 / 0.7);
+}
+
+/* ---------- Minecraft (voxel) ---------- */
+:root[data-theme='minecraft'] {
+  --font-display: 'Pixelify Sans Variable', 'Courier New', monospace;
+  --radius-sm: 0;
+  --radius: 0;
+  --radius-lg: 0;
+  --radius-btn: 0;
+  --bg: #9fd0ff;
+  --bg-2: #cfe8ff;
+  --sky-top: #6fb2ff;
+  --sky-bottom: #d4ecff;
+  --surface: #f4f0e6;
+  --surface-glass: #f4f0e6;
+  --text: #221c14;
+  --text-muted: #574838;
+  --border: #b8ab95;
+  --border-strong: #5c4a36;
+  --accent: #3a7420;
+  --accent-strong: #2f601a;
+  --accent-soft: rgb(58 116 32 / 0.14);
+  --accent-text: #2f601a;
+  --on-accent: #ffffff;
+  --focus: #1d4ed8;
+  --success: #2f601a;
+  --danger: #a1261b;
+  --grass: #5aa035;
+  --dirt: #8b5a2b;
+  --stone: #7d7d7d;
+  --xp: #7ed957;
+  --bevel-light: rgb(255 255 255 / 0.55);
+  --bevel-dark: rgb(0 0 0 / 0.28);
+  --shadow-sm: 0 2px 0 rgb(0 0 0 / 0.25);
+  --shadow: 0 4px 0 rgb(0 0 0 / 0.22);
+  --shadow-lg: 0 6px 0 rgb(0 0 0 / 0.22);
+}
+:root[data-theme='minecraft'][data-mode='dark'] {
+  --bg: #0d1433;
+  --bg-2: #141c40;
+  --sky-top: #060a1f;
+  --sky-bottom: #1b2556;
+  --surface: #262a33;
+  --surface-glass: #262a33;
+  --text: #f2efe6;
+  --text-muted: #c4bfb2;
+  --border: #3d424e;
+  --border-strong: #0f1116;
+  --accent: #7cc04b;
+  --accent-strong: #93d362;
+  --accent-soft: rgb(124 192 75 / 0.16);
+  --accent-text: #93d362;
+  --on-accent: #10200a;
+  --focus: #ffd84a;
+  --success: #93d362;
+  --danger: #ff8a7a;
+  --bevel-light: rgb(255 255 255 / 0.14);
+  --bevel-dark: rgb(0 0 0 / 0.45);
+}
+
+/* ---------- Roblox (baseplate + blocky imagery) ---------- */
+:root[data-theme='roblox'] {
+  --font-display: 'Montserrat Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-btn: 10px;
+  --bg: #dcdde0;
+  --bg-2: #eceef0;
+  --plate-line: rgb(0 0 0 / 0.07);
+  --surface: #ffffff;
+  --surface-glass: #ffffff;
+  --text: #2b2d31;
+  --text-muted: #606162;
+  --border: #dcdee0;
+  --border-strong: #b8bbbe;
+  --accent: #335fff;
+  --accent-strong: #2a4fd6;
+  --accent-soft: rgb(51 95 255 / 0.1);
+  --accent-text: #2447c9;
+  --on-accent: #ffffff;
+  --focus: #335fff;
+  --success: #00804f;
+  --online: #00b06f;
+  --danger: #c0352b;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.08), 0 6px 16px -8px rgb(0 0 0 / 0.12);
+  --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.08), 0 20px 40px -18px rgb(0 0 0 / 0.25);
+}
+:root[data-theme='roblox'][data-mode='dark'] {
+  --bg: #1f2124;
+  --bg-2: #383a3f;
+  --plate-line: rgb(255 255 255 / 0.05);
+  --surface: #2b2d31;
+  --surface-glass: #2b2d31;
+  --text: #ffffff;
+  --text-muted: #bdbebe;
+  --border: #393b3d;
+  --border-strong: #55585b;
+  --accent: #335fff;
+  --accent-strong: #4a72ff;
+  --accent-soft: rgb(51 95 255 / 0.18);
+  --accent-text: #94adff;
+  --on-accent: #ffffff;
+  --focus: #7c9bff;
+  --success: #3fc679;
+  --danger: #ff8a80;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.4), 0 8px 20px -10px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.4), 0 24px 48px -20px rgb(0 0 0 / 0.8);
+}

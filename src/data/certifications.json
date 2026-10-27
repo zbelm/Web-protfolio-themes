@@ -1,0 +1,55 @@
+{
+  "_comment": "Certifications. Add one object per certificate; the site sorts by date (newest first). date: YYYY-MM. badgeImage: path in /public (e.g. /images/badges/google-ux.webp) or empty for an issuer monogram. Empty verifyUrl hides the Verify button. The 5 entries below are PLACEHOLDERS marked \"_sample\": they appear in `npm run dev` only and are hidden on the live site. Replace them with your real certificates and remove the _sample line.",
+  "items": [
+    {
+      "_sample": true,
+      "name": "Claude 101",
+      "issuer": "Anthropic",
+      "date": "2026-05",
+      "credentialId": "SAMPLE-0001",
+      "verifyUrl": "https://example.com/verify",
+      "badgeImage": "",
+      "skills": ["Prompting", "AI-assisted coding"]
+    },
+    {
+      "_sample": true,
+      "name": "Foundations of UX Design",
+      "issuer": "Google",
+      "date": "2026-02",
+      "credentialId": "SAMPLE-0002",
+      "verifyUrl": "https://example.com/verify",
+      "badgeImage": "",
+      "skills": ["User research", "Wireframing"]
+    },
+    {
+      "_sample": true,
+      "name": "Introduction to Front-End Development",
+      "issuer": "Meta",
+      "date": "2025-11",
+      "credentialId": "SAMPLE-0003",
+      "verifyUrl": "https://example.com/verify",
+      "badgeImage": "",
+      "skills": ["HTML", "CSS", "Bootstrap"]
+    },
+    {
+      "_sample": true,
+      "name": "Programming for Everybody",
+      "issuer": "Coursera",
+      "date": "2025-08",
+      "credentialId": "SAMPLE-0004",
+      "verifyUrl": "",
+      "badgeImage": "",
+      "skills": ["Python"]
+    },
+    {
+      "_sample": true,
+      "name": "Responsive Web Design",
+      "issuer": "freeCodeCamp",
+      "date": "2025-03",
+      "credentialId": "SAMPLE-0005",
+      "verifyUrl": "https://example.com/verify",
+      "badgeImage": "",
+      "skills": ["HTML", "CSS", "Accessibility"]
+    }
+  ]
+}

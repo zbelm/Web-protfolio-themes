@@ -1,0 +1,65 @@
+{
+  "_comment": "Projects. category is one of: web | app | game. Set featured: true on ONE project (your Roblox game). thumbnail/screenshots are paths in /public (WebP recommended, e.g. /images/projects/my-game.webp). Empty or [BRACKETED] liveUrl/sourceUrl hide those buttons; a [BRACKETED] title falls back to fallbackTitle; a [BRACKETED] description falls back to summary. Entries with \"_sample\": true are layout examples: they show in `npm run dev` only and are hidden on the live site. Delete them once you add your own.",
+  "items": [
+    {
+      "id": "roblox-game",
+      "title": "[ROBLOX GAME TITLE]",
+      "fallbackTitle": "My Roblox Game",
+      "category": "game",
+      "featured": true,
+      "year": "2026",
+      "summary": "A multiplayer Roblox experience I designed, scripted in Luau and published.",
+      "description": "[Describe the game: the core loop, what players do, what you're proud of, and visits/players if you have them.]",
+      "role": "Solo developer: game design, Luau scripting, UI and level building",
+      "tech": ["Roblox Studio", "Luau", "DataStores", "UI design"],
+      "thumbnail": "",
+      "screenshots": [],
+      "liveUrl": "[ROBLOX_GAME_URL]",
+      "sourceUrl": ""
+    },
+    {
+      "id": "portfolio",
+      "title": "zachary.dev portfolio",
+      "category": "web",
+      "year": "2026",
+      "summary": "This site: three switchable themes, light and dark modes, lazy-loaded 3D and no backend.",
+      "description": "A React + Vite portfolio with a theme engine that swaps visual style, section layouts, section order and motion per theme while sharing one set of content files. Themes lazy-load their fonts and scripts, and the page keeps your place when you switch.",
+      "role": "Design and front-end development",
+      "tech": ["React", "Vite", "GSAP", "Three.js", "CSS variables"],
+      "thumbnail": "",
+      "screenshots": [],
+      "liveUrl": "",
+      "sourceUrl": "https://github.com/zbelm/Web-protfolio-themes"
+    },
+    {
+      "_sample": true,
+      "id": "sample-app",
+      "title": "Campus Planner (sample)",
+      "category": "app",
+      "year": "2025",
+      "summary": "Sample entry: a mobile app for class schedules and deadlines.",
+      "description": "Sample entry used to preview the layout. Replace with a real app project.",
+      "role": "Sample role",
+      "tech": ["Flutter", "Firebase"],
+      "thumbnail": "",
+      "screenshots": [],
+      "liveUrl": "",
+      "sourceUrl": ""
+    },
+    {
+      "_sample": true,
+      "id": "sample-web",
+      "title": "Shop Dashboard (sample)",
+      "category": "web",
+      "year": "2025",
+      "summary": "Sample entry: a small inventory dashboard for a local shop.",
+      "description": "Sample entry used to preview the layout. Replace with a real web project.",
+      "role": "Sample role",
+      "tech": ["JavaScript", "PHP", "MySQL"],
+      "thumbnail": "",
+      "screenshots": [],
+      "liveUrl": "",
+      "sourceUrl": ""
+    }
+  ]
+}

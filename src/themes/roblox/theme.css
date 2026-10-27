@@ -1,0 +1,861 @@
+/* Roblox theme: portfolio layout on a baseplate, with blocky Roblox-style imagery.
+   Scoped to .app--roblox. */
+
+.app--roblox h1,
+.app--roblox h2,
+.app--roblox h3,
+.app--roblox .nav__logo,
+.app--roblox .eyebrow,
+.app--roblox .footer__signoff,
+[data-theme='roblox'] .modal h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.app--roblox .eyebrow {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.app--roblox .section-title {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+}
+[data-theme='roblox'] .lead {
+  color: var(--text);
+}
+
+/* ---------- Baseplate background ---------- */
+.rb-plate {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg);
+  pointer-events: none;
+}
+.rb-plate__grid {
+  position: absolute;
+  inset: -48px 0;
+  background-image:
+    linear-gradient(var(--plate-line) 2px, transparent 2px),
+    linear-gradient(90deg, var(--plate-line) 2px, transparent 2px);
+  background-size: 48px 48px;
+  will-change: transform;
+}
+
+/* ---------- Cards, buttons, chips ---------- */
+.rb-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 3vw, 32px);
+}
+.app--roblox .btn,
+[data-theme='roblox'] .modal .btn {
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.app--roblox .btn--ghost,
+[data-theme='roblox'] .modal .btn--ghost {
+  --btn-bg: var(--bg-2);
+  --btn-border: transparent;
+}
+.app--roblox .btn--ghost:hover,
+[data-theme='roblox'] .modal .btn--ghost:hover {
+  --btn-bg: var(--border);
+  --btn-border: transparent;
+}
+.btn--play {
+  min-height: 54px;
+  padding-inline: 26px;
+  font-size: 1.0625rem;
+}
+.app--roblox .chip,
+[data-theme='roblox'] .modal .chip {
+  border: 0;
+  border-radius: 8px;
+  background: var(--bg-2);
+  font-weight: 600;
+}
+.app--roblox .status-badge {
+  border-radius: 10px;
+}
+.rb-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--online, #00b06f);
+}
+.rb-dot--live {
+  background: #ff4d4d;
+  animation: rb-blink 1.4s ease-in-out infinite;
+}
+@keyframes rb-blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .rb-game,
+  .rb-quest,
+  .rb-now,
+  .rb-badge {
+    transition:
+      transform 420ms var(--ease-spring),
+      box-shadow 260ms var(--ease-out);
+  }
+  .rb-game:hover,
+  .rb-quest:hover,
+  .rb-now:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+  .rb-badge:hover {
+    transform: translateY(-6px) rotate(-6deg) scale(1.05);
+  }
+}
+.app--roblox .filter {
+  border: 0;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  color: var(--text);
+}
+.app--roblox .filter[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.rb-filters {
+  width: fit-content;
+  margin-bottom: 24px;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* Nav: clean top bar */
+.app--roblox .nav[data-scrolled] {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+}
+.app--roblox .nav__links a[aria-current] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.app--roblox .nav__links ul {
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.app--roblox .nav__links a {
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.app--roblox .nav-pill {
+  border-radius: 10px;
+  background: var(--surface);
+}
+.app--roblox .icon-btn {
+  border-radius: 10px;
+}
+
+/* ---------- Blocky avatar (CSS) ---------- */
+.rb-avatar {
+  display: grid;
+  grid-template-columns: 38px 76px 38px;
+  grid-template-rows: 68px 76px 76px;
+  justify-content: center;
+}
+.rb-avatar span {
+  display: block;
+}
+.rb-avatar__head {
+  grid-column: 2;
+  position: relative;
+  width: 62px;
+  justify-self: center;
+  border-radius: 12px;
+  background: #f2c79b;
+  box-shadow: inset 0 14px 0 #3b2a1e;
+}
+.rb-avatar__head .eye {
+  position: absolute;
+  top: 26px;
+  width: 7px;
+  height: 11px;
+  border-radius: 50%;
+  background: #1b1d1f;
+}
+.rb-avatar__head .eye.l {
+  left: 18px;
+}
+.rb-avatar__head .eye.r {
+  right: 18px;
+}
+.rb-avatar__head .smile {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  width: 22px;
+  height: 11px;
+  margin-left: -11px;
+  border: 4px solid #1b1d1f;
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+.rb-avatar__torso {
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 4px;
+  background: #335fff;
+}
+.rb-avatar__arm {
+  grid-row: 2;
+  border-radius: 4px;
+  background: linear-gradient(#335fff 0 32px, #f2c79b 32px);
+}
+.rb-avatar__arm.l {
+  grid-column: 1;
+  margin-right: 2px;
+}
+.rb-avatar__arm.r {
+  grid-column: 3;
+  margin-left: 2px;
+}
+.rb-avatar__leg {
+  grid-column: 2;
+  grid-row: 3;
+  width: 37px;
+  border-radius: 4px;
+  background: #2b2d31;
+}
+[data-mode='dark'] .rb-avatar__leg {
+  background: #111214;
+}
+.rb-avatar__leg.r {
+  justify-self: end;
+}
+.rb-avatar--head {
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+.rb-avatar--head .rb-avatar__head {
+  grid-column: 1;
+  width: 62px;
+  height: 62px;
+}
+
+/* ---------- Hero: spawn point ---------- */
+.rb-hero {
+  position: relative;
+  margin-top: calc(var(--nav-h) * -1);
+  padding-top: calc(var(--nav-h) + clamp(32px, 6vw, 72px));
+  padding-bottom: clamp(64px, 9vw, 120px);
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+}
+.rb-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.rb-spawn {
+  position: relative;
+  min-height: 460px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(#7ec8ff, #d6eeff 62%, #a3a2a5 62%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+[data-mode='dark'] .rb-spawn {
+  background: linear-gradient(#1d2b4a, #3a4f78 62%, #5c5b60 62%);
+}
+.rb-spawn__3d {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}
+.rb-spawn__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: end center;
+  padding-bottom: 15%;
+  background:
+    radial-gradient(ellipse 120px 26px at 50% calc(85% + 6px), #335fff 0 60%, #6e6e72 61% 100%, transparent 101%),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgb(0 0 0 / 0.08) 46px 48px) bottom / 100% 38% no-repeat;
+}
+.rb-nametag {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #fff;
+  text-shadow:
+    0 0 3px #000,
+    0 1px 2px #000;
+}
+.rb-hero__copy {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  padding: clamp(24px, 4vw, 44px);
+  box-shadow: var(--shadow-lg);
+}
+.rb-hero__title {
+  font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+  line-height: 1;
+}
+.rb-hero__roles {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+}
+.rb-hero__pitch {
+  max-width: 50ch;
+  font-size: 1.125rem;
+  color: var(--text-muted);
+}
+:root:not([data-effects='off']) .rb-in {
+  animation: rb-pop 560ms var(--ease-spring) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rb-pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+}
+
+/* ---------- About: player card ---------- */
+.rb-player {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  grid-template-areas:
+    'head bio'
+    'stats bio';
+  gap: 28px clamp(28px, 5vw, 64px);
+}
+.rb-player__head {
+  grid-area: head;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.rb-player__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--bg-2) 60%, transparent 61%), conic-gradient(var(--accent) 0 75%, var(--border) 75%);
+  overflow: hidden;
+}
+.rb-player__avatar img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.rb-player__name {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.rb-player__tags {
+  margin-top: 12px;
+}
+.rb-player__stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.rb-player__stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 8px;
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+.rb-player__stats dd {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--accent-text);
+}
+.rb-player__stats dt {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.rb-player__bio {
+  grid-area: bio;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  font-size: 1.125rem;
+}
+.rb-player__bio h3 {
+  font-size: 1.25rem;
+}
+
+/* ---------- Projects ---------- */
+.rb-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.rb-now {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 24px;
+  border: 3px solid var(--accent);
+}
+.rb-now__media {
+  position: relative;
+}
+.rb-now__media .rb-thumb {
+  height: 100%;
+  min-height: 300px;
+  aspect-ratio: auto;
+}
+.rb-now__live {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgb(20 22 28 / 0.85);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.rb-now__body {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+  padding: clamp(24px, 4vw, 44px);
+}
+.rb-now__body h3 {
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
+}
+.rb-games {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.rb-game {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: 0;
+  overflow: hidden;
+}
+.rb-game__media {
+  position: relative;
+}
+.rb-game__play {
+  position: absolute;
+  right: 14px;
+  bottom: -26px;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 0 0 4px var(--surface);
+  transition: transform 420ms var(--ease-spring);
+}
+.rb-game__play:hover {
+  transform: scale(1.1);
+}
+.rb-game__body {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 24px 20px 20px;
+}
+.rb-game__body h3 {
+  font-size: 1.25rem;
+  padding-right: 52px;
+}
+.rb-game__meta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ---------- Skills: leaderboards ---------- */
+.rb-boards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.rb-board {
+  padding: 0;
+  overflow: hidden;
+}
+.rb-board h3 {
+  padding: 16px 24px;
+  font-size: 1.25rem;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.rb-board ol {
+  list-style: none;
+  padding: 8px 12px 12px;
+}
+.rb-row {
+  display: grid;
+  grid-template-columns: 36px 1fr minmax(60px, 120px) 52px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.rb-row:nth-child(odd) {
+  background: var(--bg-2);
+}
+.rb-rank {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  background: var(--border);
+  color: var(--text);
+}
+.rb-rank--1 {
+  background: #f5cd30;
+  color: #3d2c00;
+}
+.rb-rank--2 {
+  background: #c9ced8;
+  color: #262a33;
+}
+.rb-rank--3 {
+  background: #da8541;
+  color: #3a1f08;
+}
+.rb-row__name {
+  font-weight: 700;
+}
+.rb-row__bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.rb-row__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--p));
+  transform-origin: left;
+}
+.rb-row__lv {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-align: right;
+  color: var(--accent-text);
+}
+
+/* ---------- Certifications: badge shelf ---------- */
+.rb-achievements {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-weight: 600;
+}
+.rb-achievements .icon {
+  color: var(--accent-text);
+}
+.rb-achievements__bar {
+  width: 100px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.rb-achievements__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--p));
+  transform-origin: left;
+}
+.rb-shelf {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 40px;
+  list-style: none;
+  padding: 0;
+}
+.rb-shelf__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  text-align: center;
+}
+.rb-shelf__item::before {
+  /* the gray part slab the badge stands on */
+  content: '';
+  position: absolute;
+  top: 112px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: linear-gradient(#8e8d90, #6e6e72);
+  box-shadow: 0 6px 0 rgb(0 0 0 / 0.12);
+  z-index: -1;
+}
+.rb-badge {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+}
+.rb-badge-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 6px rgb(0 0 0 / 0.25));
+}
+.rb-shelf__name {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+.rb-shelf__item .muted {
+  font-size: 0.9375rem;
+}
+.rb-shelf__item > .btn {
+  /* push Verify to the bottom so every button in a row lines up */
+  margin-top: auto;
+}
+.rb-certs__foot {
+  margin-top: 40px;
+}
+
+/* ---------- Experience: quest board ---------- */
+.rb-quests {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 24px;
+  list-style: none;
+  padding: 0;
+}
+.rb-quest {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding-top: 34px;
+}
+.rb-quest__stud {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 34px;
+  height: 18px;
+  margin-left: -17px;
+  border-radius: 6px 6px 3px 3px;
+  background: #c4281c;
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.18);
+}
+.rb-quest:nth-child(3n + 2) .rb-quest__stud {
+  background: #f5cd30;
+}
+.rb-quest:nth-child(3n) .rb-quest__stud {
+  background: #4b974b;
+}
+.rb-quest__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.rb-status {
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+  color: var(--success);
+}
+.rb-status.is-active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.rb-quest h3 {
+  font-size: 1.375rem;
+}
+.rb-quest__org {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+.rb-quest__org .icon {
+  color: var(--accent-text);
+}
+.rb-quest__reward {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Contact ---------- */
+.rb-contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.rb-contact__grid.is-solo {
+  grid-template-columns: minmax(0, 720px);
+}
+.rb-invite {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+  overflow: hidden;
+}
+.rb-invite .section-header {
+  margin: 0;
+}
+.rb-invite__art {
+  position: absolute;
+  right: -10px;
+  bottom: -60px;
+  opacity: 0.18;
+  transform: rotate(-8deg) scale(0.8);
+  pointer-events: none;
+}
+.app--roblox .field input,
+.app--roblox .field textarea {
+  border-radius: 10px;
+  background: var(--bg-2);
+  border-color: var(--border);
+}
+
+/* ---------- Footer, modal, confetti ---------- */
+.app--roblox .footer {
+  background: var(--surface);
+}
+[data-theme='roblox'] .modal {
+  border-radius: 18px;
+}
+[data-theme='roblox'] .modal .thumb--generated {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, rgb(0 0 0 / 0.08) 46px 48px) bottom / 100% 32% no-repeat,
+    linear-gradient(#7ec8ff, #d6eeff 68%, #a3a2a5 68%);
+}
+[data-theme='roblox'] .modal .thumb__pattern {
+  display: none;
+}
+[data-theme='roblox'] .modal .thumb__mark {
+  color: #fff;
+  font-family: var(--font-display);
+  text-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
+}
+.rb-confetti {
+  position: fixed;
+  z-index: 80;
+  width: 10px;
+  height: 7px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .rb-hero__grid,
+  .rb-now,
+  .rb-contact__grid {
+    grid-template-columns: 1fr;
+  }
+  .rb-spawn {
+    min-height: 340px;
+  }
+  .rb-nametag {
+    top: 22px;
+  }
+  .rb-spawn__fallback .rb-avatar {
+    transform: scale(0.8);
+    transform-origin: 50% 100%;
+  }
+  .rb-now__media .rb-thumb {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+  .rb-games {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rb-player {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'head' 'stats' 'bio';
+  }
+  .rb-shelf {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .rb-games,
+  .rb-boards,
+  .rb-quests {
+    grid-template-columns: 1fr;
+  }
+  .rb-shelf {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rb-row {
+    grid-template-columns: 32px 1fr 52px;
+  }
+  .rb-row__bar {
+    display: none;
+  }
+  .rb-spawn {
+    min-height: 280px;
+  }
+  .rb-player__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "_comment": "About section copy. 'story' is a list of short paragraphs. 'availability' shows as a pill. Quick facts with a 'source' are counted automatically from the other data files (projects | certifications | skills).",
+  "headline": "I learn by building things people can actually use.",
+  "story": [
+    "I'm an IT student who got into programming by making games, then stayed for everything around them: the websites that show them off, the apps that support them and the tools that make building faster.",
+    "Today I split my time between web development, mobile apps and Roblox game development. I care about clean code, interfaces that feel calm and fast, and finishing what I start."
+  ],
+  "availability": "Available for OJT and commissions",
+  "interests": ["Web apps", "Mobile apps", "Game systems", "UI design"],
+  "quickFacts": [
+    { "label": "Projects", "source": "projects" },
+    { "label": "Certifications", "source": "certifications" },
+    { "label": "Technologies", "source": "skills" }
+  ]
+}
